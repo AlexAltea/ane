@@ -393,7 +393,6 @@ static const struct drm_driver ane_drm_driver = {
 	.fops = &ane_drm_fops,
 	.name = "ane",
 	.desc = "Apple Neural Engine driver",
-	.date = "20230103",
 };
 
 static int ane_iommu_domain_init(struct ane_device *ane)
@@ -595,7 +594,7 @@ detach_genpd:
 	return err;
 }
 
-static int ane_platform_remove(struct platform_device *pdev)
+static void ane_platform_remove(struct platform_device *pdev)
 {
 	struct ane_device *ane = platform_get_drvdata(pdev);
 	drm_dev_unregister(&ane->drm);
@@ -603,7 +602,6 @@ static int ane_platform_remove(struct platform_device *pdev)
 	pm_runtime_dont_use_autosuspend(ane->dev);
 	ane_iommu_domain_free(ane);
 	ane_detach_genpd(ane);
-	return 0;
 }
 
 static int __maybe_unused ane_runtime_suspend(struct device *dev)

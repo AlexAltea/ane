@@ -1,6 +1,6 @@
 ifneq ($(KERNELRELEASE),)
 	obj-m := ane.o
-	ane-objs := ./src/ane_drv.o ./src/ane_tm.o
+	ane-objs := src/ane_drv.o src/ane_tm.o
 else
 	KERNELDIR := /lib/modules/$(shell uname -r)/build
  	PWD := $(shell pwd)
